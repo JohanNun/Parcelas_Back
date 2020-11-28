@@ -10,6 +10,18 @@ const getAll = () => {
 
 
 
+const getById = (pIdUsuario) => {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * FROM usuarios WHERE id = ?', [pIdUsuario], (error, rows) => {
+            if (error) reject(error);
+            if (rows.length === 0) resolve(null);
+            resolve(rows[0]);
+        })
+    })
+}
+
+
+
 
 //Metodo create() - POST  (Para ir a '/registro')
 const create = ({ nombre, apellidos, sexo, nombre_usuario, email, password, direccion, fecha_nacimiento, experiencia, rol, imagen, comentario }) => {
@@ -62,5 +74,5 @@ const getByEmail = (pEmail) => {
 
 
 module.exports = {
-    getAll, create, updateById, deleteById
+    getAll, getById, create, updateById, deleteById
 }

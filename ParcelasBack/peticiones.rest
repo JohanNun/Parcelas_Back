@@ -1,0 +1,17 @@
+POST http://localhost:3000/api/usuarios
+Content-Type: application/json
+
+{
+    "nombre": "Johan",
+    "apellidos": "Nunez",
+    "sexo": "M",
+    "nombre_usuario": "JoNun",
+    "email": "jo.nunez@mail.com",
+    "password": "12345",
+    "direccion": "Calle Pez, 15, 28021 Madrid",
+    "fecha_nacimiento": "1988/03/03",
+    "experiencia": "si",
+    "rol": "dueño",
+    "imagen": "https://www.guidedogs.org/wp-content/uploads/2019/11/website-donate-mobile.jpg", 
+    "comentario": "qwertyuiop"
+}
