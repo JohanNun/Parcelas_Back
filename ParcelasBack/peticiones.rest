@@ -8,10 +8,39 @@ Content-Type: application/json
     "nombre_usuario": "JoNun",
     "email": "jo.nunez@mail.com",
     "password": "12345",
-    "direccion": "Calle Pez, 15, 28021 Madrid",
+    "locacion": "Calle Pez, 15, 28021 Madrid",
     "fecha_nacimiento": "1988/03/03",
     "experiencia": "si",
-    "rol": "dueño",
+    "rol": "dueno",
     "imagen": "https://www.guidedogs.org/wp-content/uploads/2019/11/website-donate-mobile.jpg", 
-    "comentario": "qwertyuiop"
+    "descripcion": "qwertyuiop"
 }
+
+###
+
+GET http://localhost:3000/api/usuarios
+
+
+###
+PUT http://localhost:3000/api/usuarios
+Content-Type: application/json
+
+{
+    "idUsuario": 1,
+    "nombre": "Diego",
+    "apellidos": "Valdez",
+    "sexo": "M",
+    "nombre_usuario": "DieVal", 
+    "email": "diego@mail.com", 
+    "password": "12345", 
+    "locacion": "Calle Grande, 6, 28005 Madrid",
+    "fecha_nacimiento": "1980/02/08", 
+    "experiencia": "si", 
+    "rol": "alquilador",
+    "imagen": "https://www.guidedogs.org/wp-content/uploads/2019/11/website-donate-mobile.jpg", 
+    "descripcion": "asdasdasdasd"
+}
+
+
+###
+DELETE http://localhost:3000/api/usuarios/2

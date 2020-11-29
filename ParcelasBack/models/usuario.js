@@ -24,9 +24,9 @@ const getById = (pIdUsuario) => {
 
 
 //Metodo create() - POST  (Para ir a '/registro')
-const create = ({ nombre, apellidos, sexo, nombre_usuario, email, password, direccion, fecha_nacimiento, experiencia, rol, imagen, comentario }) => {
+const create = ({ nombre, apellidos, sexo, nombre_usuario, email, password, locacion, fecha_nacimiento, experiencia, rol, imagen, descripcion }) => {
     return new Promise((resolve, reject) => {
-        db.query('INSERT INTO usuarios (nombre, apellidos, sexo, nombre_usuario, email, password, direccion, fecha_nacimiento, experiencia, rol, imagen, comentario, fecha_registro) VALUES =(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [nombre, apellidos, sexo, nombre_usuario, email, password, direccion, fecha_nacimiento, experiencia, rol, imagen, comentario, new Date], (error, result) => {
+        db.query('INSERT INTO usuarios (nombre, apellidos, sexo, nombre_usuario, email, password, locacion, fecha_nacimiento, experiencia, rol, imagen, descripcion, fecha_registro) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [nombre, apellidos, sexo, nombre_usuario, email, password, locacion, fecha_nacimiento, experiencia, rol, imagen, descripcion, new Date], (error, result) => {
             if (error) reject(error);
             resolve(result)
         })
@@ -37,9 +37,9 @@ const create = ({ nombre, apellidos, sexo, nombre_usuario, email, password, dire
 
 
 //Metodo updateById() - PUT
-const updateById = (pIdUsuario, { nombre, apellidos, sexo, nombre_usuario, email, password, direccion, fecha_nacimiento, experiencia, rol, imagen, comentario }) => {
+const updateById = (pIdUsuario, { nombre, apellidos, sexo, nombre_usuario, email, password, locacion, fecha_nacimiento, experiencia, rol, imagen, descripcion }) => {
     return new Promise((resolve, reject) => {
-        db.query('UPDATE usuarios SET nombre = ?, apellidos = ?, sexo = ?, nombre_usuario = ?, email = ?, password = ?, direccion = ?, fecha_nacimiento = ?, experiencia = ?, rol = ?, imagen = ?, comentario = ? WHERE id = ?', [pIdUsuario, nombre, apellidos, sexo, nombre_usuario, email, password, direccion, fecha_nacimiento, experiencia, rol, imagen, comentario], (error, result) => {
+        db.query('UPDATE usuarios SET nombre = ?, apellidos = ?, sexo = ?, nombre_usuario = ?, email = ?, password = ?, locacion = ?, fecha_nacimiento = ?, experiencia = ?, rol = ?, imagen = ?, descripcion = ? WHERE id = ?', [nombre, apellidos, sexo, nombre_usuario, email, password, locacion, fecha_nacimiento, experiencia, rol, imagen, descripcion, pIdUsuario], (error, result) => {
             if (error) reject(error);
             resolve(result);
         })
