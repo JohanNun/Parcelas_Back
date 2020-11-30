@@ -1,6 +1,11 @@
 const router = require('express').Router();
-const { getAll, getById, create, updateById, deleteById } = require('../../models/usuario');
+const { getAll, getById, create, updateById, deleteById, getByEmail } = require('../../models/usuario');
+const bcrypt = require('bcryptjs');
+const webTok = require('jsonwebtoken');
+const daysJs = require('dayjs');
 
+
+/* GET query */
 
 router.get('/', async (req, res) => {
 
@@ -16,9 +21,15 @@ router.get('/', async (req, res) => {
 
 
 
+/* POST queries */
+
+
+// Crear/Registrar un usuario
 router.post('/', async (req, res) => {
     console.log(req.body);
     try {
+
+        req.body.password = bcrypt.hashSync(req.body.password, 10);
         const result = await create(req.body);
         if (result.affectedRows === 1) {
             const nuevoUsuario = await getById(result.insertId)
@@ -33,7 +44,57 @@ router.post('/', async (req, res) => {
 
 
 
+//Login de un usuario
+router.post('/login', async (req, res) => {
 
+    const { email, password } = req.body;
+
+    try {
+        //Compruebo que el email existe
+        const usuario = await getByEmail(email);
+
+        if (!usuario) {
+            return res.json({ error: 'Error en el email y/o contraseña' });
+        }
+        //Compruebo que la contraseña existe y es igual a la introducida
+        const iguales = bcrypt.compareSync(password, usuario.password);
+        console.log(password, usuario.password);
+        if (!iguales) {
+            return res.json({ error: 'Error en el email y/o contraseña' });
+        }
+
+        //Si email y password existen, creo un token
+        res.json({
+            success: "LOGIN CORRECTO",
+            token: createToken(usuario)
+        });
+
+    } catch (error) {
+        res.json({ error: error.message });
+    }
+
+})
+
+
+
+//Funcion para generar un token
+function createToken(pUsuario) {
+    const objeto = {
+        idUsuario: pUsuario.id,
+        caducidad: daysJs().add(6, 'week').unix()
+    };
+    return webTok.sign(objeto, process.env.SECRET_KEY);
+}
+
+
+
+
+
+
+/* PUT query */
+
+
+//Actualizar un usuario
 router.put('/', async (req, res) => {
 
     try {
@@ -55,8 +116,9 @@ router.put('/', async (req, res) => {
 
 
 
+/* DELETE query */
 
-//Borrar un cliente
+//Borrar un usuario
 router.delete('/:idUsuario', async (req, res) => {
 
     try {

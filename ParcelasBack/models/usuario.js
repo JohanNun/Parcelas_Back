@@ -24,9 +24,9 @@ const getById = (pIdUsuario) => {
 
 
 //Metodo create() - POST  (Para ir a '/registro')
-const create = ({ nombre, apellidos, sexo, nombre_usuario, email, password, locacion, fecha_nacimiento, experiencia, rol, imagen, descripcion }) => {
+const create = ({ nombre, apellidos, sexo, nombre_usuario, email, password, locacion, fecha_nacimiento, experiencia, imagen, descripcion }) => {
     return new Promise((resolve, reject) => {
-        db.query('INSERT INTO usuarios (nombre, apellidos, sexo, nombre_usuario, email, password, locacion, fecha_nacimiento, experiencia, rol, imagen, descripcion, fecha_registro) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [nombre, apellidos, sexo, nombre_usuario, email, password, locacion, fecha_nacimiento, experiencia, rol, imagen, descripcion, new Date], (error, result) => {
+        db.query('INSERT INTO usuarios (nombre, apellidos, sexo, nombre_usuario, email, password, locacion, fecha_nacimiento, experiencia, imagen, descripcion, fecha_registro) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [nombre, apellidos, sexo, nombre_usuario, email, password, locacion, fecha_nacimiento, experiencia, imagen, descripcion, new Date], (error, result) => {
             if (error) reject(error);
             resolve(result)
         })
@@ -37,9 +37,9 @@ const create = ({ nombre, apellidos, sexo, nombre_usuario, email, password, loca
 
 
 //Metodo updateById() - PUT
-const updateById = (pIdUsuario, { nombre, apellidos, sexo, nombre_usuario, email, password, locacion, fecha_nacimiento, experiencia, rol, imagen, descripcion }) => {
+const updateById = (pIdUsuario, { nombre, apellidos, sexo, nombre_usuario, email, password, locacion, fecha_nacimiento, experiencia, imagen, descripcion }) => {
     return new Promise((resolve, reject) => {
-        db.query('UPDATE usuarios SET nombre = ?, apellidos = ?, sexo = ?, nombre_usuario = ?, email = ?, password = ?, locacion = ?, fecha_nacimiento = ?, experiencia = ?, rol = ?, imagen = ?, descripcion = ? WHERE id = ?', [nombre, apellidos, sexo, nombre_usuario, email, password, locacion, fecha_nacimiento, experiencia, rol, imagen, descripcion, pIdUsuario], (error, result) => {
+        db.query('UPDATE usuarios SET nombre = ?, apellidos = ?, sexo = ?, nombre_usuario = ?, email = ?, password = ?, locacion = ?, fecha_nacimiento = ?, experiencia = ?, imagen = ?, descripcion = ? WHERE id = ?', [nombre, apellidos, sexo, nombre_usuario, email, password, locacion, fecha_nacimiento, experiencia, imagen, descripcion, pIdUsuario], (error, result) => {
             if (error) reject(error);
             resolve(result);
         })
@@ -64,7 +64,7 @@ const deleteById = (pIdUsuario) => {
 //Metodo getByEmail() - GET  (para ir a '/login')
 const getByEmail = (pEmail) => {
     return new Promise((resolve, reject) => {
-        db.query('SELECT * FROM usuario WHERE EMAIL = ?', [pEmail], (error, rows) => {
+        db.query('SELECT * FROM usuarios WHERE EMAIL = ?', [pEmail], (error, rows) => {
             if (error) reject(error);
             if (rows.length !== 1) resolve(null);
             resolve(rows[0]);
@@ -74,5 +74,5 @@ const getByEmail = (pEmail) => {
 
 
 module.exports = {
-    getAll, getById, create, updateById, deleteById
+    getAll, getById, create, updateById, deleteById, getByEmail
 }

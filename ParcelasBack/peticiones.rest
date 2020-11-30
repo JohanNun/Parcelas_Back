@@ -2,19 +2,32 @@ POST http://localhost:3000/api/usuarios
 Content-Type: application/json
 
 {
-    "nombre": "Johan",
-    "apellidos": "Nunez",
-    "sexo": "M",
-    "nombre_usuario": "JoNun",
-    "email": "jo.nunez@mail.com",
+    "nombre": "John",
+    "apellidos": "Wayne",
+    "sexo": "F",
+    "nombre_usuario": "JoWa",
+    "email": "john@mail.com",
     "password": "12345",
-    "locacion": "Calle Pez, 15, 28021 Madrid",
-    "fecha_nacimiento": "1988/03/03",
+    "locacion": "Calle bla, 25, 28005 Madrid",
+    "fecha_nacimiento": "1990/12/12",
     "experiencia": "si",
-    "rol": "dueno",
     "imagen": "https://www.guidedogs.org/wp-content/uploads/2019/11/website-donate-mobile.jpg", 
-    "descripcion": "qwertyuiop"
+    "descripcion": "ljwhfvjhebrfi"
 }
+
+###
+
+POST http://localhost:3000/api/usuarios/login
+Content-Type: application/json
+
+{
+    "email": "john@mail.com",
+    "password": "12345"
+}
+
+
+
+
 
 ###
 
