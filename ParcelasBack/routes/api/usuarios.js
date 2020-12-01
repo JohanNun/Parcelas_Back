@@ -46,7 +46,7 @@ router.post('/', async (req, res) => {
 
 //Login de un usuario
 router.post('/login', async (req, res) => {
-
+    console.log(req.body);
     const { email, password } = req.body;
 
     try {
