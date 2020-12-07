@@ -75,3 +75,22 @@ Content-Type: application/json
     "descripcion": "wrgrwgwrgrwgw",
     "images": "url"
 }
+
+
+###
+PUT http://localhost:3000/api/parcelas
+Content-Type: application/json
+
+{
+    "idParcela": 1,
+    "localizacion": "Pablo Iglesias, 89",
+    "tamaño_total": "1600",
+    "tamaño_disponible": "900",
+    "precio_metro": "14",
+    "descripcion": "sdfsgsdf",
+    "images": "url"
+}
+
+
+###
+DELETE http://localhost:3000/api/parcelas/2

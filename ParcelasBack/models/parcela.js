@@ -32,5 +32,25 @@ const create = ({ localizacion, tamaño_total, tamaño_disponible, precio_metro,
     })
 }
 
+//Actualizar parcela por id
+const updateById = (pIdParcela, { localizacion, tamaño_total, tamaño_disponible, precio_metro, descripcion, images }) => {
+    return new Promise((resolve, reject) => {
+        db.query('UPDATE parcela SET localizacion = ?, tamaño_total = ?, tamaño_disponible = ?, precio_metro = ?, descripcion = ?, image = ? WHERE id = ?', [localizacion, tamaño_total, tamaño_disponible, precio_metro, descripcion, images], (error, result) => {
+            if (error) reject(error);
+            resolve(result);
+        })
+    })
+}
 
-module.exports = { getAllParcelas, getById, create }
+//Borra parcela por id
+const deleteById = (pIdParcela) => {
+    return new Promise((resolve, reject) => {
+        db.query('DELETE FROM parcela WHERE id = ?', [pIdParcela], (error, result) => {
+            if (error) reject(error);
+            resolve(result);
+        })
+    })
+}
+
+
+module.exports = { getAllParcelas, getById, create, updateById, deleteById }
