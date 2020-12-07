@@ -68,12 +68,12 @@ POST http://localhost:3000/api/parcelas
 Content-Type: application/json
 
 {
-    "localizacion": "Principe Pio, 89",
-    "tamaño_total": "1200",
-    "tamaño_disponible": "700",
-    "precio_metro": "15",
-    "descripcion": "wrgrwgwrgrwgw",
-    "images": "url"
+    "localizacion": "Calle Carmen Bor, 69",
+    "tamano_total": "600",
+    "tamano_disponible": "70",
+    "precio_metro": "10",
+    "descripcion": "´kejfòkejr",
+    "images": "https://www.tutorialesprogramacionya.com/mysqlya/temarios/imagentema/foto038.jpg"
 }
 
 
@@ -82,15 +82,15 @@ PUT http://localhost:3000/api/parcelas
 Content-Type: application/json
 
 {
-    "idParcela": 1,
-    "localizacion": "Pablo Iglesias, 89",
-    "tamaño_total": "1600",
-    "tamaño_disponible": "900",
-    "precio_metro": "14",
-    "descripcion": "sdfsgsdf",
-    "images": "url"
+    "idParcela": 8,
+    "localizacion": "Juan Carlos, 3",
+    "tamaño_total": "1000",
+    "tamaño_disponible": "100",
+    "precio_metro": "7",
+    "descripcion": "kwjefnvkonenfv",
+    "images": "una bonita imagen"
 }
 
 
 ###
-DELETE http://localhost:3000/api/parcelas/2
+DELETE http://localhost:3000/api/parcelas/10

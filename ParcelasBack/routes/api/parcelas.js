@@ -54,7 +54,7 @@ router.put('/', async (req, res) => {
 //Metodo deleteById() - DELETE
 //Borrar una parcela
 
-router.delete('/:idParccela', async (req, res) => {
+router.delete('/:idParcela', async (req, res) => {
 
     try {
         const result = await deleteById(req.params.idParcela);
