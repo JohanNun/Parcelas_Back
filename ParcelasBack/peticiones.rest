@@ -57,3 +57,21 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:3000/api/usuarios/2
+
+
+###
+
+GET http://localhost:3000/api/parcelas
+
+###
+POST http://localhost:3000/api/parcelas
+Content-Type: application/json
+
+{
+    "localizacion": "Principe Pio, 89",
+    "tamaño_total": "1200",
+    "tamaño_disponible": "700",
+    "precio_metro": "15",
+    "descripcion": "wrgrwgwrgrwgw",
+    "images": "url"
+}
