@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getAllParcelas, getById, create, updateById, deleteById } = require('../../models/parcela')
+const { getAllParcelas, getById, create, updateById, deleteById, selectByPrecioUp, selectByPrecioDown, selectByTamano } = require('../../models/parcela')
 
 
 //Metodo getAll() - GET
@@ -13,6 +13,42 @@ router.get('/', async (req, res) => {
     }
 
 })
+
+
+router.get('/precioAsc', async (req, res) => {
+
+    try {
+        const rows = await selectByPrecioUp();
+        res.json(rows)
+    } catch (error) {
+        res.json({ error: error.message })
+    }
+
+})
+
+
+router.get('/precioDesc', async (req, res) => {
+
+    try {
+        const rows = await selectByPrecioDown();
+        res.json(rows);
+    } catch (error) {
+        res.json({ error: error.message })
+    }
+
+})
+
+
+router.get('/tamanoDesc', async (req, res) => {
+
+    try {
+        const rows = await selectByTamano();
+        res.json(rows);
+    } catch (error) {
+        res.json({ error: error.message })
+    }
+})
+
 
 //Metodo create() - POST
 

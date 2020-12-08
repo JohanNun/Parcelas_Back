@@ -23,19 +23,19 @@ const getById = (pIdParcela) => {
 
 /* crear una parcela */
 
-const create = ({ localizacion, tamano_total, tamano_disponible, precio_metro, descripcion, images }) => {
+const create = ({ titulo, localizacion, tamano_total, tamano_disponible, precio_metro, descripcion, images }) => {
     return new Promise((resolve, reject) => {
-        db.query('INSERT INTO huerto.parcela (localizacion, tamano_total, tamano_disponible, precio_metro, descripcion, images) VALUES (?, ?, ?, ?, ?, ?)', [localizacion, tamano_total, tamano_disponible, precio_metro, descripcion, images], (error, result) => {
+        db.query('INSERT INTO huerto.parcela (titulo, localizacion, tamano_total, tamano_disponible, precio_metro, descripcion, images) VALUES (?, ?, ?, ?, ?, ?, ?)', [titulo, localizacion, tamano_total, tamano_disponible, precio_metro, descripcion, images], (error, result) => {
             if (error) reject(error);
-            resolve(result)
+            resolve(result);
         })
     })
 }
 
 //Actualizar parcela por id
-const updateById = (pIdParcela, { localizacion, tamano_total, tamano_disponible, precio_metro, descripcion, images }) => {
+const updateById = (pIdParcela, { titulo, localizacion, tamano_total, tamano_disponible, precio_metro, descripcion, images }) => {
     return new Promise((resolve, reject) => {
-        db.query('UPDATE parcela SET localizacion = ?, tamano_total = ?, tamano_disponible = ?, precio_metro = ?, descripcion = ?, images = ? WHERE id = ?', [localizacion, tamano_total, tamano_disponible, precio_metro, descripcion, images, pIdParcela], (error, result) => {
+        db.query('UPDATE parcela SET titulo = ?, localizacion = ?, tamano_total = ?, tamano_disponible = ?, precio_metro = ?, descripcion = ?, images = ? WHERE id = ?', [titulo, localizacion, tamano_total, tamano_disponible, precio_metro, descripcion, images, pIdParcela], (error, result) => {
             if (error) reject(error);
             resolve(result);
         })
@@ -53,4 +53,34 @@ const deleteById = (pIdParcela) => {
 }
 
 
-module.exports = { getAllParcelas, getById, create, updateById, deleteById }
+const selectByPrecioUp = () => {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * FROM parcela ORDER BY precio_metro ASC', (error, rows) => {
+            if (error) reject(error);
+            resolve(rows);
+        })
+    })
+}
+
+
+const selectByPrecioDown = () => {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * FROM parcela ORDER BY precio_metro DESC', (error, rows) => {
+            if (error) reject(error);
+            resolve(rows);
+        })
+    })
+}
+
+
+const selectByTamano = () => {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * FROM huerto.parcela ORDER BY tamano_disponible DESC', (error, rows) => {
+            if (error) reject(error);
+            resolve(rows);
+        })
+    })
+}
+
+
+module.exports = { getAllParcelas, getById, create, updateById, deleteById, selectByPrecioUp, selectByPrecioDown, selectByTamano }

@@ -63,17 +63,34 @@ DELETE http://localhost:3000/api/usuarios/2
 
 GET http://localhost:3000/api/parcelas
 
+
 ###
+
+GET http://localhost:3000/api/parcelas/precioAsc
+
+
+###
+
+GET http://localhost:3000/api/parcelas/precioDesc
+
+###
+
+GET http://localhost:3000/api/parcelas/tamanoDesc
+
+###
+
+
 POST http://localhost:3000/api/parcelas
 Content-Type: application/json
 
 {
-    "localizacion": "Calle Carmen Bor, 69",
-    "tamano_total": "600",
-    "tamano_disponible": "70",
-    "precio_metro": "10",
+    "titulo": "Parcelita bonita",
+    "localizacion": "Calle Pez, 43",
+    "tamano_total": 400,
+    "tamano_disponible": 20,
+    "precio_metro": 12,
     "descripcion": "´kejfòkejr",
-    "images": "https://www.tutorialesprogramacionya.com/mysqlya/temarios/imagentema/foto038.jpg"
+    "images": "https://i.avoz.es/default/2018/01/26/00121516980001614100405/Foto/BE27C3F1_1.jpg"
 }
 
 
@@ -83,12 +100,13 @@ Content-Type: application/json
 
 {
     "idParcela": 8,
-    "localizacion": "Juan Carlos, 3",
-    "tamaño_total": "1000",
-    "tamaño_disponible": "100",
-    "precio_metro": "7",
+    "titulo": "PARCELÓN!",
+    "localizacion": "Calle Yisucristo, 33",
+    "tamano_total": 300,
+    "tamano_disponible": 100,
+    "precio_metro": 13,
     "descripcion": "kwjefnvkonenfv",
-    "images": "una bonita imagen"
+    "images": "https://static.spainhouses.net/fotos/86696582/86696582_3740359_foto_846900.jpg"
 }
 
 
