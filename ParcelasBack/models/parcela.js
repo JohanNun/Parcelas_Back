@@ -83,4 +83,14 @@ const selectByTamano = () => {
 }
 
 
-module.exports = { getAllParcelas, getById, create, updateById, deleteById, selectByPrecioUp, selectByPrecioDown, selectByTamano }
+const getByCiudad = (pCiudad) => {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * FROM huerto.parcela WHERE ciudad = ?', [pCiudad], (error, rows) => {
+            if (error) reject(error);
+            resolve(rows);
+        })
+    })
+}
+
+
+module.exports = { getAllParcelas, getById, create, updateById, deleteById, selectByPrecioUp, selectByPrecioDown, selectByTamano, getByCiudad }

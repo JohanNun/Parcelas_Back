@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getAllParcelas, getById, create, updateById, deleteById, selectByPrecioUp, selectByPrecioDown, selectByTamano } = require('../../models/parcela')
+const { getAllParcelas, getById, create, updateById, deleteById, selectByPrecioUp, selectByPrecioDown, selectByTamano, getByCiudad } = require('../../models/parcela')
 
 
 //Metodo getAll() - GET
@@ -43,6 +43,17 @@ router.get('/tamanoDesc', async (req, res) => {
 
     try {
         const rows = await selectByTamano();
+        res.json(rows);
+    } catch (error) {
+        res.json({ error: error.message })
+    }
+})
+
+
+router.get('/:ciudad', async (req, res) => {
+    const ciudad = req.params.ciudad;
+    try {
+        const rows = await getByCiudad(ciudad);
         res.json(rows);
     } catch (error) {
         res.json({ error: error.message })
