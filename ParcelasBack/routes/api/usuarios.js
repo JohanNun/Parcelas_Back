@@ -19,6 +19,18 @@ router.get('/', async (req, res) => {
 })
 
 
+router.get('/:id', async (req, res) => {
+
+    const id = req.params.id;
+    try {
+        const rows = await getById(id);
+        res.json(rows)
+    } catch (error) {
+        res.json({ error: error.message });
+    }
+})
+
+
 
 
 /* POST queries */

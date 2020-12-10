@@ -35,6 +35,15 @@ GET http://localhost:3000/api/usuarios
 
 
 ###
+
+GET http://localhost:3000/api/usuarios/5
+
+###
+
+GET http://localhost:3000/api/parcelas/parcela/5
+
+
+###
 PUT http://localhost:3000/api/usuarios
 Content-Type: application/json
 
@@ -61,7 +70,7 @@ DELETE http://localhost:3000/api/usuarios/2
 
 ###
 
-GET http://localhost:3000/api/parcelas
+GET http://localhost:3000/api/parcelas/user/1
 
 
 ###

@@ -93,4 +93,15 @@ const getByCiudad = (pCiudad) => {
 }
 
 
-module.exports = { getAllParcelas, getById, create, updateById, deleteById, selectByPrecioUp, selectByPrecioDown, selectByTamano, getByCiudad }
+const getUsuarioByParcelaId = (pIdParcela) => {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * FROM huerto.usuarios WHERE usuarios.fk_parcela = ?', [pIdParcela], (error, rows) => {
+            if (error) reject(error);
+            if (rows.length === 0) resolve(null);
+            resolve(rows[0]);
+        })
+    })
+}
+
+
+module.exports = { getAllParcelas, getById, create, updateById, deleteById, selectByPrecioUp, selectByPrecioDown, selectByTamano, getByCiudad, getUsuarioByParcelaId }
