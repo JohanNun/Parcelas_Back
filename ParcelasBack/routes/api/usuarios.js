@@ -78,7 +78,8 @@ router.post('/login', async (req, res) => {
         //Si email y password existen, creo un token
         res.json({
             success: "LOGIN CORRECTO",
-            token: createToken(usuario)
+            token: createToken(usuario),
+            imagen: usuario.imagen
         });
 
     } catch (error) {
