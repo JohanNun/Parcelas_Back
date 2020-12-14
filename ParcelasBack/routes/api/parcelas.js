@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getAllParcelas, getById, create, updateById, deleteById, selectByPrecioUp, selectByPrecioDown, selectByTamano, getByCiudad, getUsuarioByParcelaId } = require('../../models/parcela')
+const { getAllParcelas, getById, create, updateById, deleteById, selectByPrecioUp, selectByPrecioDown, selectByTamano, getByCiudad, getParcelaByUsuarioId, getParcelaByUserName } = require('../../models/parcela')
 
 
 //Metodo getAll() - GET
@@ -73,16 +73,31 @@ router.get('/parcela/:idParcela', async (req, res) => {
 
 
 
-router.get('/user/:idParcela', async (req, res) => {
-    const usuario = req.params.idParcela;
+router.get('/user/:idUsuario', async (req, res) => {
+    const usuario = req.params.idUsuario;
 
     try {
-        const rows = await getUsuarioByParcelaId(usuario);
+        const rows = await getParcelaByUsuarioId(usuario);
         res.json(rows)
     } catch (error) {
         res.json({ error: error.message })
     }
 })
+
+
+
+
+router.get('/user/parcela/:userName', async (req, res) => {
+    const usuario = req.params.userName;
+
+    try {
+        const rows = await getParcelaByUserName(usuario);
+        res.json(rows)
+    } catch (error) {
+        res.json({ error: error.message })
+    }
+})
+
 
 
 //Metodo create() - POST

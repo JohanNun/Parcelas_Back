@@ -34,6 +34,13 @@ Content-Type: application/json
 GET http://localhost:3000/api/usuarios
 
 
+
+###
+
+
+GET http://localhost:3000/api/usuarios/perfil/SR4
+
+
 ###
 
 GET http://localhost:3000/api/usuarios/5
@@ -70,7 +77,7 @@ DELETE http://localhost:3000/api/usuarios/2
 
 ###
 
-GET http://localhost:3000/api/parcelas/user/1
+GET http://localhost:3000/api/parcelas/user/8
 
 
 ###
@@ -91,6 +98,18 @@ GET http://localhost:3000/api/parcelas/Madrid
 ####
 
 GET http://localhost:3000/api/parcelas/tamanoDesc
+
+###
+
+
+GET http://localhost:3000/api/usuarios/user/1
+
+
+###
+
+GET http://localhost:3000/api/parcelas/user/parcela/SR4
+
+
 
 ###
 

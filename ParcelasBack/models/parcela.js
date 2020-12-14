@@ -93,15 +93,28 @@ const getByCiudad = (pCiudad) => {
 }
 
 
-const getUsuarioByParcelaId = (pIdParcela) => {
+const getParcelaByUsuarioId = (pIdUsuario) => {
     return new Promise((resolve, reject) => {
-        db.query('SELECT * FROM huerto.usuarios WHERE usuarios.fk_parcela = ?', [pIdParcela], (error, rows) => {
+        db.query('SELECT * FROM huerto.parcela WHERE parcela.fk_usuario = ?', [pIdUsuario], (error, rows) => {
             if (error) reject(error);
-            if (rows.length === 0) resolve(null);
-            resolve(rows[0]);
+            /* if (rows.length === 0) resolve(null); */
+            resolve(rows);
         })
     })
 }
 
 
-module.exports = { getAllParcelas, getById, create, updateById, deleteById, selectByPrecioUp, selectByPrecioDown, selectByTamano, getByCiudad, getUsuarioByParcelaId }
+
+const getParcelaByUserName = (pUserName) => {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT * FROM huerto.parcela WHERE fk_usuario = (select usuarios.id FROM usuarios WHERE nombre_usuario = ?)', [pUserName], (error, rows) => {
+            if (error) reject(error);
+            /* if (rows.length === 0) resolve(null); */
+            resolve(rows);
+        })
+    })
+}
+
+
+
+module.exports = { getAllParcelas, getById, create, updateById, deleteById, selectByPrecioUp, selectByPrecioDown, selectByTamano, getByCiudad, getParcelaByUsuarioId, getParcelaByUserName }

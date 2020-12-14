@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getAll, getById, create, updateById, deleteById, getByEmail } = require('../../models/usuario');
+const { getAll, getById, create, updateById, deleteById, getByEmail, getByUserName, getUserByParcela } = require('../../models/usuario');
 const bcrypt = require('bcryptjs');
 const webTok = require('jsonwebtoken');
 const daysJs = require('dayjs');
@@ -30,6 +30,35 @@ router.get('/:id', async (req, res) => {
     }
 })
 
+
+
+//Get por nombre_usuario
+router.get('/perfil/:nombreUsuario', async (req, res) => {
+
+    const nombreUsuario = req.params.nombreUsuario;
+    console.log(nombreUsuario);
+    try {
+        const rows = await getByUserName(nombreUsuario);
+        res.json(rows)
+    } catch (error) {
+        res.json({ error: error.message });
+    }
+})
+
+
+
+//Get parcela por usuario
+router.get('/user/:idParcela', async (req, res) => {
+
+    const idParcela = req.params.idParcela;
+    console.log(idParcela);
+    try {
+        const rows = await getUserByParcela(idParcela);
+        res.json(rows)
+    } catch (error) {
+        res.json({ error: error.message });
+    }
+})
 
 
 
@@ -79,7 +108,8 @@ router.post('/login', async (req, res) => {
         res.json({
             success: "LOGIN CORRECTO",
             token: createToken(usuario),
-            imagen: usuario.imagen
+            imagen: usuario.imagen,
+            usuario: usuario.nombre_usuario
         });
 
     } catch (error) {
