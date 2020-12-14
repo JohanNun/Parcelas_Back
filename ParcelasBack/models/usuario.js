@@ -23,6 +23,7 @@ const getById = (pIdUsuario) => {
 
 
 
+
 //Metodo create() - POST  (Para ir a '/registro')
 const create = ({ nombre, apellidos, sexo, nombre_usuario, email, password, locacion, fecha_nacimiento, experiencia, imagen, descripcion }) => {
     return new Promise((resolve, reject) => {

@@ -99,11 +99,13 @@ POST http://localhost:3000/api/parcelas
 Content-Type: application/json
 
 {
-    "titulo": "Parcelita bonita",
-    "localizacion": "Calle Pez, 43",
-    "tamano_total": 400,
-    "tamano_disponible": 20,
-    "precio_metro": 12,
+    "titulo": "Pars bon",
+    "calle": "Carrer de la Diputació, 355",
+    "CP": "08009",
+    "ciudad": "Barcelona",
+    "tamano_total": 30,
+    "tamano_disponible": 10,
+    "precio_metro": 4,
     "descripcion": "´kejfòkejr",
     "images": "https://i.avoz.es/default/2018/01/26/00121516980001614100405/Foto/BE27C3F1_1.jpg"
 }
@@ -126,4 +128,4 @@ Content-Type: application/json
 
 
 ###
-DELETE http://localhost:3000/api/parcelas/10
+DELETE http://localhost:3000/api/parcelas/23

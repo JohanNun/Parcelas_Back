@@ -23,9 +23,9 @@ const getById = (pIdParcela) => {
 
 /* crear una parcela */
 
-const create = ({ titulo, localizacion, tamano_total, tamano_disponible, precio_metro, descripcion, images }) => {
+const create = ({ titulo, tamano_total, tamano_disponible, precio_metro, calle, CP, ciudad, descripcion, images }) => {
     return new Promise((resolve, reject) => {
-        db.query('INSERT INTO huerto.parcela (titulo, localizacion, tamano_total, tamano_disponible, precio_metro, descripcion, images) VALUES (?, ?, ?, ?, ?, ?, ?)', [titulo, localizacion, tamano_total, tamano_disponible, precio_metro, descripcion, images], (error, result) => {
+        db.query('INSERT INTO huerto.parcela (titulo, tamano_total, tamano_disponible, precio_metro, calle, CP, ciudad, descripcion, images) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', [titulo, tamano_total, tamano_disponible, precio_metro, calle, CP, ciudad, descripcion, images], (error, result) => {
             if (error) reject(error);
             resolve(result);
         })
@@ -33,9 +33,9 @@ const create = ({ titulo, localizacion, tamano_total, tamano_disponible, precio_
 }
 
 //Actualizar parcela por id
-const updateById = (pIdParcela, { titulo, localizacion, tamano_total, tamano_disponible, precio_metro, descripcion, images }) => {
+const updateById = (pIdParcela, { titulo, calle, CP, ciudad, tamano_total, tamano_disponible, precio_metro, descripcion, images }) => {
     return new Promise((resolve, reject) => {
-        db.query('UPDATE parcela SET titulo = ?, localizacion = ?, tamano_total = ?, tamano_disponible = ?, precio_metro = ?, descripcion = ?, images = ? WHERE id = ?', [titulo, localizacion, tamano_total, tamano_disponible, precio_metro, descripcion, images, pIdParcela], (error, result) => {
+        db.query('UPDATE parcela SET titulo = ?, calle = ?, CP = ?, ciudad = ?, tamano_total = ?, tamano_disponible = ?, precio_metro = ?, descripcion = ?, images = ? WHERE id = ?', [titulo, calle, CP, ciudad, tamano_total, tamano_disponible, precio_metro, descripcion, images, pIdParcela], (error, result) => {
             if (error) reject(error);
             resolve(result);
         })
