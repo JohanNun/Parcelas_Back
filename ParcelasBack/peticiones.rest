@@ -55,19 +55,18 @@ PUT http://localhost:3000/api/usuarios
 Content-Type: application/json
 
 {
-    "idUsuario": 1,
-    "nombre": "Diego",
-    "apellidos": "Valdez",
+    "idUsuario": 8,
+    "apellidos": "Ramos",
+    "descripcion": "iuerfierpi2uer",
+    "email": "sergio@mail.com",
+    "fecha_nacimiento": "1985-06-12",
+    "imagen": "https://www.realmadrid.com/cs/Satellite?blobcol=urldata&blobheader=image%2Fpng&blobkey=id&blobtable=MungoBlobs&blobwhere=1203412578396&ssbinary=true",
+    "locacion": "Calle Sevilla, 90, 28045 Madrid",
+    "nombre": "Sergio",
+    "nombre_usuario": "SR4",
+    "password": "$2a$10$h0jt8y1cW//bdPhXArE7QuxvH.cvAz1HBAERhz5mMwm/PkSN9vgom",
     "sexo": "M",
-    "nombre_usuario": "DieVal", 
-    "email": "diego@mail.com", 
-    "password": "12345", 
-    "locacion": "Calle Grande, 6, 28005 Madrid",
-    "fecha_nacimiento": "1980/02/08", 
-    "experiencia": "si", 
-    "rol": "alquilador",
-    "imagen": "https://www.guidedogs.org/wp-content/uploads/2019/11/website-donate-mobile.jpg", 
-    "descripcion": "asdasdasdasd"
+    "telefono": "4294967295"
 }
 
 
