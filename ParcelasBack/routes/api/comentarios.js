@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getAll, getById, create, updateById, deleteById, getComentarioByUsuarioId, getComentarioByParcelaId } = require('../../models/comentario');
+const { getAll, getById, create, updateById, deleteById, getComentariosByUsuarioId, getComentariosByParcelaId } = require('../../models/comentario');
 
 
 router.get('/', async (req, res) => {
@@ -27,7 +27,7 @@ router.get('/user/:idUsuario', async (req, res) => {
     const usuario = req.params.idUsuario;
 
     try {
-        const rows = await getComentarioByUsuarioId(usuario);
+        const rows = await getComentariosByUsuarioId(usuario);
         res.json(rows)
     } catch (error) {
         res.json({ error: error.message })
@@ -38,7 +38,7 @@ router.get('/parcela/:idParcela', async (req, res) => {
     const parcela = req.params.idParcela;
 
     try {
-        const rows = await getComentarioByParcelaId(parcela);
+        const rows = await getComentariosByParcelaId(parcela);
         res.json(rows)
     } catch (error) {
         res.json({ error: error.message })
