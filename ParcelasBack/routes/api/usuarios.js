@@ -109,7 +109,8 @@ router.post('/login', async (req, res) => {
             success: "LOGIN CORRECTO",
             token: createToken(usuario),
             imagen: usuario.imagen,
-            usuario: usuario.nombre_usuario
+            usuario: usuario.nombre_usuario,
+            idUsuario: usuario.id
         });
 
     } catch (error) {
