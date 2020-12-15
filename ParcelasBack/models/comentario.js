@@ -18,30 +18,31 @@ const getById = (pIdComentario) => {
     })
 }
 
-const getComentarioByUsuarioId = (pIdUsuario) => {
+const getComentariosByUsuarioId = (pIdUsuario) => {
     return new Promise((resolve, reject) => {
-        db.query('SELECT * FROM huerto.comentarios WHERE comentarios.fk_usuario = ?', [pIdUsuario], (error, rows) => {
+        db.query('SELECT c.*, u.nombre_usuario FROM huerto.comentarios as c, huerto.usuarios as u WHERE c.fk_usuario = ? and c.fk_usuario = u.id;', [pIdUsuario], (error, rows) => {
             if (error) reject(error);
-            /* if (rows.length === 0) resolve(null); */
+
             resolve(rows);
         })
     })
 }
 
-const getComentarioByParcelaId = (pIdParcela) => {
+const getComentariosByParcelaId = (pIdParcela) => {
     return new Promise((resolve, reject) => {
-        db.query('SELECT * FROM huerto.comentarios WHERE comentarios.fk_parcela = ?', [pIdParcela], (error, rows) => {
+        db.query('SELECT c.*, u.nombre_usuario FROM huerto.comentarios as c, huerto.usuarios as u WHERE c.fk_parcela = ? and c.fk_usuario = u.id;', [pIdParcela], (error, rows) => {
             if (error) reject(error);
-            /* if (rows.length === 0) resolve(null); */
+
             resolve(rows);
         })
     })
 }
 
 
-const create = ({ texto_comentario }) => {
+
+const create = ({ texto_comentario, fecha }) => {
     return new Promise((resolve, reject) => {
-        db.query('INSERT INTO comentarios (texto_comentario) VALUES (?)', [texto_comentario], (error, result) => {
+        db.query('INSERT INTO comentarios (texto_comentario, fecha) VALUES (?, ?)', [texto_comentario], (error, result) => {
             if (error) reject(error);
             resolve(result)
         })
@@ -69,5 +70,5 @@ const deleteById = (pIdComentario) => {
 
 
 module.exports = {
-    getAll, getById, create, updateById, deleteById, getComentarioByParcelaId, getComentarioByUsuarioId
+    getAll, getById, create, updateById, deleteById, getComentariosByParcelaId, getComentariosByUsuarioId
 }
