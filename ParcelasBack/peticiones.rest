@@ -147,4 +147,37 @@ Content-Type: application/json
 
 
 ###
-DELETE http://localhost:3000/api/parcelas/23
+DELETE http://localhost:3000/api/parcelas/0
+
+
+###
+GET http://localhost:3000/api/comentarios
+
+###
+GET http://localhost:3000/api/comentarios/2
+
+###
+GET http://localhost:3000/api/comentarios/user/8
+
+###
+GET http://localhost:3000/api/comentarios/parcela/3
+
+###
+POST http://localhost:3000/api/comentarios
+Content-Type: application/json
+
+{
+   "texto_comentario": "dgsgwwgwadvwrhgadgwrgsfhetjnmgmtgfadbnmktyrsbndjehsnt"
+}
+
+###
+PUT http://localhost:3000/api/comentarios
+Content-Type: application/json
+
+{
+    "idComentario": 8,
+    "texto_comentario": "aaaaaaaaaaaaaaaaaaa"
+}
+
+###
+DELETE http://localhost:3000/api/comentarios/9
