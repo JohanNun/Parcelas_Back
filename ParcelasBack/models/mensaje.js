@@ -41,9 +41,47 @@ const getMensajeByRecibidorId = (pFkUsuarioRecibe) => {
 }
 
 
-const creat = () => {
+
+const getNombreUsuarioByfkRecibe = (pFkUsuarioRecibe) => {
     return new Promise((resolve, reject) => {
-        db.query('')
+        db.query('SELECT m.*, u.nombre_usuario FROM huerto.mensajes as m, huerto.usuarios as u WHERE m.fk_usuario_recibe = ? AND u.id = fk_usuario_recibe;', [pFkUsuarioRecibe], (error, rows) => {
+            if (error) reject(error);
+            resolve(rows);
+        })
+    })
+}
+
+
+const getNombreUsuarioByfkManda = (pFkUsuarioManda) => {
+    return new Promise((resolve, reject) => {
+        db.query('SELECT m.*, u.nombre_usuario FROM huerto.mensajes as m, huerto.usuarios as u WHERE m.fk_usuario_manda = ? AND u.id = fk_usuario_manda;', [pFkUsuarioManda], (error, rows) => {
+            if (error) reject(error);
+            resolve(rows);
+        })
+    })
+}
+
+
+
+//Post mensaje
+const create = ({ texto }, pIdUsuarioManda, pIdUsuarioRecibe) => {
+    return new Promise((resolve, reject) => {
+        db.query('INSERT INTO mensajes (texto, fk_usuario_manda, fk_usuario_recibe) VALUES (?, ?, ?)', [texto, pIdUsuarioManda, pIdUsuarioRecibe], (error, result) => {
+            if (error) reject(error);
+            resolve(result)
+        })
+    })
+}
+
+
+
+//Borrar mensaje
+const deleteById = (pIdMensaje) => {
+    return new Promise((resolve, reject) => {
+        db.query('DELETE FROM mensajes WHERE id = ?', [pIdMensaje], (error, result) => {
+            if (error) reject(error);
+            resolve(result);
+        })
     })
 }
 
@@ -51,7 +89,6 @@ const creat = () => {
 
 
 
-
 module.exports = {
-    getAll, getById, getMensajeBySenderId, getMensajeByRecibidorId
+    getAll, getById, getMensajeBySenderId, getMensajeByRecibidorId, create, deleteById, getNombreUsuarioByfkRecibe, getNombreUsuarioByfkManda
 }

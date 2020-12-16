@@ -3,7 +3,7 @@ const daysJs = require('dayjs');
 const { getById } = require('../models/usuario')
 
 const checkToken = async (req, res, next) => {
-
+    console.log(req.headers);
     if (!req.headers['authorization']) {
         return res.status(403).json({ error: 'Debes introducir el header Authorization' });
     }
