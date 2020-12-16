@@ -142,9 +142,9 @@ function createToken(pUsuario) {
 router.put('/', async (req, res) => {
 
     try {
-        const result = await updateById(req.body.idUsuario, req.body);
+        const result = await updateById(req.body.id, req.body);
         if (result.affectedRows === 1) {
-            const usuarioActualizado = await getById(req.body.idUsuario)
+            const usuarioActualizado = await getById(req.body.id)
             res.json({
                 mensaje: 'El usuario se ha actualizado',
                 usuario: usuarioActualizado

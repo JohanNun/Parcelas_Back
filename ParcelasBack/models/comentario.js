@@ -18,6 +18,8 @@ const getById = (pIdComentario) => {
     })
 }
 
+
+
 const getComentariosByUsuarioId = (pIdUsuario) => {
     return new Promise((resolve, reject) => {
         db.query('SELECT c.*, u.nombre_usuario FROM huerto.comentarios as c, huerto.usuarios as u WHERE c.fk_usuario = ? and c.fk_usuario = u.id;', [pIdUsuario], (error, rows) => {
@@ -27,6 +29,7 @@ const getComentariosByUsuarioId = (pIdUsuario) => {
         })
     })
 }
+
 
 const getComentariosByParcelaId = (pIdParcela) => {
     return new Promise((resolve, reject) => {
