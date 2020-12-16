@@ -163,11 +163,12 @@ GET http://localhost:3000/api/comentarios/user/8
 GET http://localhost:3000/api/comentarios/parcela/3
 
 ###
-POST http://localhost:3000/api/comentarios
+POST http://localhost:3000/api/comentarios/nuevo_comentario
 Content-Type: application/json
 
 {
-   "texto_comentario": "dgsgwwgwadvwrhgadgwrgsfhetjnmgmtgfadbnmktyrsbndjehsnt"
+   "texto_comentario": "dfgfdgsfsdsgfbxfjobñdaojfbcouebacljasdoquefbcjsabdoqepoufbsajobcjbqepu9bpdfpaoscde"
+   
 }
 
 ###
