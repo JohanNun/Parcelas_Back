@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { checkToken } = require('../middleware')
 const { getAll, getById, create, updateById, deleteById, getComentariosByUsuarioId, getComentariosByParcelaId } = require('../../models/comentario');
 
 
@@ -47,10 +48,11 @@ router.get('/parcela/:idParcela', async (req, res) => {
 
 
 
-router.post('/nuevo_comentario', async (req, res) => {
-    console.log(req.body);
+router.post('/nuevo_comentario/:idParcela', [checkToken], async (req, res) => {
+    console.log(req.user.id);
     try {
-        const result = await create(req.body);
+        const result = await create(req.body, req.user.id, req.params.idParcela);
+        console.log(result);
         if (result.affectedRows === 1) {
             const nuevoComentario = await getById(result.insertId)
             res.json(nuevoComentario);

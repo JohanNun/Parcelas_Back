@@ -4,11 +4,11 @@ const { getById } = require('../models/usuario')
 
 const checkToken = async (req, res, next) => {
 
-    if (!req.headers['Authorization']) {
+    if (!req.headers['authorization']) {
         return res.status(403).json({ error: 'Debes introducir el header Authorization' });
     }
 
-    const token = req.headers['Authorization'];
+    const token = req.headers['authorization'];
     const objeto = webTok.decode(token, process.env.SECRET_KEY);
 
     if (!objeto) {

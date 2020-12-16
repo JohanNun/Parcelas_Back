@@ -162,8 +162,9 @@ GET http://localhost:3000/api/comentarios/user/8
 GET http://localhost:3000/api/comentarios/parcela/3
 
 ###
-POST http://localhost:3000/api/comentarios/nuevo_comentario
+POST http://localhost:3000/api/comentarios/1/nuevo_comentario
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjYsImNhZHVjaWRhZCI6MTYxMTc0NDc3NSwiaWF0IjoxNjA4MTE1OTc1fQ.BKKyYRsVPiGopGp66wiE0moHmgNFANjZc9C-Mc8JsB4
 
 {
    "texto_comentario": "dfgfdgsfsdsgfbxfjobñdaojfbcouebacljasdoquefbcjsabdoqepoufbsajobcjbqepu9bpdfpaoscde"

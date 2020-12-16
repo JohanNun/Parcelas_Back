@@ -40,9 +40,9 @@ const getComentariosByParcelaId = (pIdParcela) => {
 
 
 
-const create = ({ texto_comentario }) => {
+const create = ({ texto_comentario }, pIdUsuario, pIdParcela) => {
     return new Promise((resolve, reject) => {
-        db.query('INSERT INTO comentarios (texto_comentario) VALUES (?)', [texto_comentario], (error, result) => {
+        db.query('INSERT INTO comentarios (texto_comentario, fk_usuario, fk_parcela) VALUES (?, ?, ?)', [texto_comentario, pIdUsuario, pIdParcela], (error, result) => {
             if (error) reject(error);
             resolve(result)
         })
