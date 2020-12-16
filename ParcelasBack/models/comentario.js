@@ -30,7 +30,7 @@ const getComentariosByUsuarioId = (pIdUsuario) => {
 
 const getComentariosByParcelaId = (pIdParcela) => {
     return new Promise((resolve, reject) => {
-        db.query('SELECT c.*, u.nombre_usuario FROM huerto.comentarios as c, huerto.usuarios as u WHERE c.fk_parcela = ? and c.fk_usuario = u.id;', [pIdParcela], (error, rows) => {
+        db.query('SELECT c.*, u.nombre_usuario, u.imagen FROM huerto.comentarios as c, huerto.usuarios as u WHERE c.fk_parcela = ? and c.fk_usuario = u.id;', [pIdParcela], (error, rows) => {
             if (error) reject(error);
 
             resolve(rows);
@@ -40,9 +40,9 @@ const getComentariosByParcelaId = (pIdParcela) => {
 
 
 
-const create = ({ texto_comentario, fecha }) => {
+const create = ({ texto_comentario }) => {
     return new Promise((resolve, reject) => {
-        db.query('INSERT INTO comentarios (texto_comentario, fecha) VALUES (?, ?)', [texto_comentario], (error, result) => {
+        db.query('INSERT INTO comentarios (texto_comentario) VALUES (?)', [texto_comentario], (error, result) => {
             if (error) reject(error);
             resolve(result)
         })
