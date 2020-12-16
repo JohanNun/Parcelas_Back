@@ -39,6 +39,7 @@ const create = ({ nombre, apellidos, sexo, nombre_usuario, telefono, email, pass
 
 //Metodo updateById() - PUT
 const updateById = (pIdUsuario, { nombre, apellidos, sexo, nombre_usuario, telefono, email, password, locacion, fecha_nacimiento, imagen, descripcion }) => {
+    console.log(pIdUsuario, nombre, apellidos, sexo, nombre_usuario, telefono, email, password, locacion, fecha_nacimiento, imagen, descripcion);
     return new Promise((resolve, reject) => {
         db.query('UPDATE usuarios SET nombre = ?, apellidos = ?, sexo = ?, nombre_usuario = ?, telefono = ?, email = ?, password = ?, locacion = ?, fecha_nacimiento = ?, imagen = ?, descripcion = ? WHERE id = ?', [nombre, apellidos, sexo, nombre_usuario, telefono, email, password, locacion, fecha_nacimiento, imagen, descripcion, pIdUsuario], (error, result) => {
             if (error) reject(error);
