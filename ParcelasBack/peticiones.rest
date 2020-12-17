@@ -21,7 +21,7 @@ POST http://localhost:3000/api/usuarios/login
 Content-Type: application/json
 
 {
-    "email": "john@mail.com",
+    "email": "sergio@mail.com",
     "password": "12345"
 }
 
@@ -200,7 +200,7 @@ GET http://localhost:3000/api/mensajes/userRecibe/1
 
 ###
 
-GET http://localhost:3000/api/mensajes/nombreUsuarioRecibe/8'
+GET http://localhost:3000/api/mensajes/nombreUsuarioRecibe/1'
 
 
 
@@ -217,3 +217,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjYsImNhZHVj
 ###
 DELETE http://localhost:3000/api/mensajes/2
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjYsImNhZHVjaWRhZCI6MTYxMTc1MDY2MiwiaWF0IjoxNjA4MTIxODYyfQ.-X652HfZ72qr6ZkNDDxzEQ3UHhRL14DAH-7zmCif5UI
+
+###
+
+GET http://localhost:3000/api/mensajes/conversacion/1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjgsImNhZHVjaWRhZCI6MTYxMTg0MTY3OSwiaWF0IjoxNjA4MjEyODc5fQ.T9IxG_eT52jpwMMzDdRvJvROj42aeKgdCACxBcDcEmQ

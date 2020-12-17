@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { checkToken } = require('../middleware');
-const { getAll, getById, getMensajeBySenderId, getMensajeByRecibidorId, getNombreUsuarioByfkRecibe, getNombreUsuarioByfkManda, create, deleteById } = require('../../models/mensaje');
+const { getAll, getById, getMensajeBySenderId, getMensajeByRecibidorId, create, deleteById, getAllConversaciones, getConversacionById, getMensajesByConversacion } = require('../../models/mensaje');
 
 
 //Recibir todos los mensaje
@@ -13,6 +13,22 @@ router.get('/', async (req, res) => {
         res.json({ error: error.message })
     }
 
+})
+
+
+
+router.get('/conversacion', [checkToken], async (req, res) => {
+
+    try {
+        const rows = await getAllConversaciones(req.user.id);
+        for (let row of rows) {
+            const mensajes = await getMensajesByConversacion(row.id)
+            row.mensajes = mensajes
+        }
+        res.json(rows)
+    } catch (error) {
+        res.json({ error: error.message });
+    }
 })
 
 
@@ -58,24 +74,15 @@ router.get('/userRecibe/:idUsuario', async (req, res) => {
 
 
 
-router.get('/nombreUsuarioRecibe/:nombreUsuario', async (req, res) => {
-    const usuarioRecibe = req.params.nombreUsuario;
+
+
+router.get('/conversacion/:idConversacion', async (req, res) => {
+    const idConversacion = req.params.idConversacion;
 
     try {
-        const rows = await getNombreUsuarioByfkRecibe(usuarioRecibe);
-        res.json(rows)
-    } catch (error) {
-        res.json({ error: error.message })
-    }
-})
-
-
-router.get('/nombreUsuarioManda/:nombreUsuario', async (req, res) => {
-    const usuarioManda = req.params.nombreUsuario;
-
-    try {
-        const rows = await getNombreUsuarioByfkManda(usuarioManda);
-        res.json(rows)
+        const conversacion = await getConversacionById(idConversacion);
+        conversacion.mensajes = await getMensajesByConversacion(idConversacion);
+        res.json(conversacion);
     } catch (error) {
         res.json({ error: error.message })
     }
@@ -85,12 +92,10 @@ router.get('/nombreUsuarioManda/:nombreUsuario', async (req, res) => {
 
 
 
-
-
-router.post('/nuevo_mensaje/:idUsuario', [checkToken], async (req, res) => {
+router.post('/nuevo_mensaje/:idConversacion', [checkToken], async (req, res) => {
     console.log(req.user.id);
     try {
-        const result = await create(req.body, req.user.id, req.params.idUsuario);
+        const result = await create(req.body, req.user.id, req.params.idConversacion);
         console.log(result);
         if (result.affectedRows === 1) {
             const nuevoMensaje = await getById(result.insertId)
