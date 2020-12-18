@@ -117,7 +117,7 @@ router.post('/nueva_conversacion/:idUsuario2', [checkToken], async (req, res) =>
     try {
         const result = await createConversacion(req.user.id, req.params.idUsuario2);
         if (result.affectedRows === 1) {
-            const nuevaConversacion = await getConversacionById(result.insertId)
+            const nuevaConversacion = await getConversacionById(result.insertId);
             res.json(nuevaConversacion);
         } else {
             res.json({ error: 'No se ha podido mandar el mensaje' })

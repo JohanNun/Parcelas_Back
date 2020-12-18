@@ -27,7 +27,7 @@ const getById = (pIdUsuario) => {
 //Metodo create() - POST  (Para ir a '/registro')
 const create = ({ nombre, apellidos, sexo, nombre_usuario, telefono, email, password, locacion, fecha_nacimiento, imagen, descripcion }) => {
     return new Promise((resolve, reject) => {
-        db.query('INSERT INTO usuarios (nombre, apellidos, sexo, nombre_usuario, telefono, email, password, locacion, fecha_nacimiento, imagen, descripcion, fecha_registro) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [nombre, apellidos, sexo, nombre_usuario, telefono, email, password, locacion, fecha_nacimiento, imagen, descripcion, new Date], (error, result) => {
+        db.query('INSERT INTO usuarios (nombre, apellidos, sexo, nombre_usuario, telefono, email, password, locacion, fecha_nacimiento, imagen, descripcion, fecha_registro) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [nombre, apellidos, sexo, nombre_usuario, telefono, email, password, locacion, fecha_nacimiento, imagen, descripcion, new Date], (error, result) => {
             if (error) reject(error);
             resolve(result)
         })
