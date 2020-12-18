@@ -222,3 +222,9 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjYsImNhZHVj
 
 GET http://localhost:3000/api/mensajes/conversacion/1
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjgsImNhZHVjaWRhZCI6MTYxMTg0MTY3OSwiaWF0IjoxNjA4MjEyODc5fQ.T9IxG_eT52jpwMMzDdRvJvROj42aeKgdCACxBcDcEmQ
+
+###
+
+POST http://localhost:3000/api/mensajes/nueva_conversacion/5
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjgsImNhZHVjaWRhZCI6MTYxMTg0MTY3OSwiaWF0IjoxNjA4MjEyODc5fQ.T9IxG_eT52jpwMMzDdRvJvROj42aeKgdCACxBcDcEmQ

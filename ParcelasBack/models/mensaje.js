@@ -44,7 +44,7 @@ const getMensajeByRecibidorId = (pFkUsuarioRecibe) => {
 
 const getAllConversaciones = (idUsuario) => {
     return new Promise((resolve, reject) => {
-        db.query('SELECT *, (SELECT nombre_usuario FROM usuarios WHERE id = usuario1) as nombre_usuario_1, (SELECT nombre_usuario FROM usuarios WHERE id = usuario2) as nombre_usuario_2 FROM huerto.conversaciones WHERE usuario1 = ? OR usuario2 = ?', [idUsuario, idUsuario], (error, rows) => {
+        db.query('SELECT *, (SELECT nombre_usuario FROM usuarios WHERE id = usuario1) as nombre_usuario_1, (SELECT imagen FROM usuarios WHERE id = usuario1) as imagen_1, (SELECT nombre_usuario FROM usuarios WHERE id = usuario2) as nombre_usuario_2, (SELECT imagen FROM usuarios WHERE id = usuario2) as imagen_2 FROM huerto.conversaciones WHERE usuario1 = ? OR usuario2 = ?', [idUsuario, idUsuario], (error, rows) => {
             if (error) reject(error);
             resolve(rows);
         })
@@ -66,7 +66,7 @@ const getMensajesByConversacion = (idConversacion) => {
 
 const getConversacionById = (pIdConversacion) => {
     return new Promise((resolve, reject) => {
-        db.query('SELECT *, (SELECT nombre_usuario FROM usuarios WHERE id = usuario1) as nombre_usuario_1, (SELECT nombre_usuario FROM usuarios WHERE id = usuario2) as nombre_usuario_2 FROM huerto.conversaciones WHERE id = ?', [pIdConversacion], (error, rows) => {
+        db.query('SELECT *, (SELECT nombre_usuario FROM usuarios WHERE id = usuario1) as nombre_usuario_1, (SELECT imagen FROM usuarios WHERE id = usuario1) as imagen_1, (SELECT nombre_usuario FROM usuarios WHERE id = usuario2) as nombre_usuario_2, (SELECT imagen FROM usuarios WHERE id = usuario2) as imagen_2 FROM huerto.conversaciones WHERE id = ?', [pIdConversacion], (error, rows) => {
             if (error) reject(error);
             if (rows.length === 0) resolve(null);
             resolve(rows[0]);
@@ -82,6 +82,16 @@ const getConversacionById = (pIdConversacion) => {
 const create = ({ texto }, pIdUsuario, pIdConversacion) => {
     return new Promise((resolve, reject) => {
         db.query('INSERT INTO mensajes (texto, fk_usuario_id, fk_conversacion) VALUES (?, ?, ?)', [texto, pIdUsuario, pIdConversacion], (error, result) => {
+            if (error) reject(error);
+            resolve(result)
+        })
+    })
+}
+
+
+const createConversacion = (pUsuario1, pUsuario2) => {
+    return new Promise((resolve, reject) => {
+        db.query('INSERT INTO conversaciones (usuario1, usuario2) VALUES (?, ?)', [pUsuario1, pUsuario2], (error, result) => {
             if (error) reject(error);
             resolve(result)
         })
@@ -105,5 +115,5 @@ const deleteById = (pIdMensaje) => {
 
 
 module.exports = {
-    getAll, getById, getMensajeBySenderId, getMensajeByRecibidorId, create, deleteById, getMensajesByConversacion, getAllConversaciones, getConversacionById
+    getAll, getById, getMensajeBySenderId, getMensajeByRecibidorId, create, deleteById, getMensajesByConversacion, getAllConversaciones, getConversacionById, createConversacion
 }

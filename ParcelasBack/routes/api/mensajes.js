@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { checkToken } = require('../middleware');
-const { getAll, getById, getMensajeBySenderId, getMensajeByRecibidorId, create, deleteById, getAllConversaciones, getConversacionById, getMensajesByConversacion } = require('../../models/mensaje');
+const { getAll, getById, getMensajeBySenderId, getMensajeByRecibidorId, create, createConversacion, deleteById, getAllConversaciones, getConversacionById, getMensajesByConversacion } = require('../../models/mensaje');
 
 
 //Recibir todos los mensaje
@@ -107,6 +107,32 @@ router.post('/nuevo_mensaje/:idConversacion', [checkToken], async (req, res) => 
         res.json({ error: error.message })
     }
 })
+
+
+
+
+
+router.post('/nueva_conversacion/:idUsuario2', [checkToken], async (req, res) => {
+
+    try {
+        const result = await createConversacion(req.user.id, req.params.idUsuario2);
+        if (result.affectedRows === 1) {
+            const nuevaConversacion = await getConversacionById(result.insertId)
+            res.json(nuevaConversacion);
+        } else {
+            res.json({ error: 'No se ha podido mandar el mensaje' })
+        }
+
+    } catch (error) {
+
+    }
+
+
+})
+
+
+
+
 
 
 
