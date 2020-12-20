@@ -256,5 +256,9 @@ Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjgsImNhZHVjaWRhZCI6MTYxMjEwNTY0NSwiaWF0IjoxNjA4NDc2ODQ1fQ.8nnLCPo839hpsr2vwVP9bhUG4NfRP48OF7M5uo69oIM
 
 {
-    "tamano": 10
+    "tamano": 50
 }
+
+###
+DELETE http://localhost:3000/api/trozos/17
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjgsImNhZHVjaWRhZCI6MTYxMjEwNTY0NSwiaWF0IjoxNjA4NDc2ODQ1fQ.8nnLCPo839hpsr2vwVP9bhUG4NfRP48OF7M5uo69oIM
