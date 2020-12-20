@@ -6,6 +6,7 @@ const apiHuertosRouter = require('./api/huertos');
 const apiComentariosRouter = require('./api/comentarios');
 const apiMensajesRouter = require('./api/mensajes');
 const apiCultivosRouter = require('./api/cultivos');
+const apiTrozos = require('./api/trozos');
 const { checkToken } = require('./middleware');
 
 
@@ -15,6 +16,7 @@ router.use('/huertos', apiHuertosRouter);
 router.use('/comentarios', apiComentariosRouter);
 router.use('/mensajes', apiMensajesRouter);
 router.use('/cultivos', apiCultivosRouter);
+router.use('/trozos', apiTrozos);
 
 
 module.exports = router; 
