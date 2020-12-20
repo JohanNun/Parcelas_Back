@@ -35,7 +35,7 @@ const create = ({ titulo, tamano_total, tamano_disponible, precio_metro, calle, 
 //Actualizar parcela por id
 const updateById = (pIdParcela, { titulo, calle, CP, ciudad, tamano_total, tamano_disponible, precio_metro, descripcion, images, fk_usuario }) => {
     return new Promise((resolve, reject) => {
-        db.query('UPDATE parcela SET titulo = ?, calle = ?, CP = ?, ciudad = ?, tamano_total = ?, tamano_disponible = ?, precio_metro = ?, descripcion = ?, images = ?, fk_usuario = ?, WHERE id = ?', [titulo, calle, CP, ciudad, tamano_total, tamano_disponible, precio_metro, descripcion, images, fk_usuario, pIdParcela], (error, result) => {
+        db.query('UPDATE parcela SET titulo = ?, calle = ?, CP = ?, ciudad = ?, tamano_total = ?, tamano_disponible = ?, precio_metro = ?, descripcion = ?, images = ?, fk_usuario = ? WHERE id = ?', [titulo, calle, CP, ciudad, tamano_total, tamano_disponible, precio_metro, descripcion, images, fk_usuario, pIdParcela], (error, result) => {
             if (error) reject(error);
             resolve(result);
         })

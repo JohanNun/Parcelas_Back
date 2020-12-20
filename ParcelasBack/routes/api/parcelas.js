@@ -119,10 +119,10 @@ router.post('/', async (req, res) => {
 
 //Metodo updateById() - PUT
 //Actualizar parcela
-router.put('/', async (req, res) => {
+router.put('/:idParcela', async (req, res) => {
 
     try {
-        const result = await updateById(req.body.idParcela, req.body);
+        const result = await updateById(req.params.idParcela, req.body);
         if (result.affectedRows === 1) {
             const parcelaActualizada = await getById(req.body.idParcela)
             res.json({
