@@ -42,6 +42,7 @@ router.get('/user/:idUsuario', async (req, res) => {
 
 
 router.post('/nuevo_trozo/:idParcela', [checkToken], async (req, res) => {
+    console.log(req.body);
     const result = await reservar(req.body, req.params.idParcela, req.user.id);
 
     try {

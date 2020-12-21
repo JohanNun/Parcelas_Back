@@ -12,7 +12,7 @@ const getAllParcelas = () => {
 //Metodo getById()
 const getById = (pIdParcela) => {
     return new Promise((resolve, reject) => {
-        db.query('SELECT * FROM huerto.parcela WHERE id = ?', [pIdParcela], (error, rows) => {
+        db.query('SELECT *, tamano_disponible - (SELECT sum(tamano) FROM trozos WHERE fk_parcela = 1) as trozo_disponible FROM huerto.parcela WHERE id = ?', [pIdParcela], (error, rows) => {
             if (error) reject(error);
             if (rows.length === 0) resolve(null);
             resolve(rows[0]);
