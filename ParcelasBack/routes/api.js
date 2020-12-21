@@ -10,13 +10,13 @@ const apiTrozos = require('./api/trozos');
 const { checkToken } = require('./middleware');
 
 
-router.use('/usuarios', /* checkToken */ apiUsuariosRouter);
-router.use('/parcelas', /* checkToken, */ apiParcelasRouter);
+router.use('/usuarios', apiUsuariosRouter);
+router.use('/parcelas', apiParcelasRouter);
 router.use('/huertos', apiHuertosRouter);
 router.use('/comentarios', apiComentariosRouter);
-router.use('/mensajes', apiMensajesRouter);
+router.use('/mensajes', checkToken, apiMensajesRouter);
 router.use('/cultivos', apiCultivosRouter);
-router.use('/trozos', apiTrozos);
+router.use('/trozos', checkToken, apiTrozos);
 
 
 module.exports = router; 
