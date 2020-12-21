@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getAllParcelas, getById, create, updateById, deleteById, selectByPrecioUp, selectByPrecioDown, selectByTamano, getByCiudad, getParcelaByUsuarioId, getParcelaByUserName } = require('../../models/parcela')
+const { getAllParcelas, getById, create, update, deleteById, selectByPrecioUp, selectByPrecioDown, selectByTamano, getByCiudad, getParcelaByUsuarioId, getParcelaByUserName } = require('../../models/parcela')
 
 
 //Metodo getAll() - GET
@@ -119,10 +119,11 @@ router.post('/', async (req, res) => {
 
 //Metodo updateById() - PUT
 //Actualizar parcela
-router.put('/:idParcela', async (req, res) => {
+router.put('/', async (req, res) => {
 
     try {
-        const result = await updateById(req.params.idParcela, req.body);
+        const result = await update(req.body.id, req.body);
+        console.log(result);
         if (result.affectedRows === 1) {
             const parcelaActualizada = await getById(req.body.idParcela)
             res.json({
