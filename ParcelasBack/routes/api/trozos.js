@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { checkToken } = require('../middleware');
-const { getAll, getById, getByParcelaId, getByUsuarioId, reservar, cancel } = require('../../models/trozo');
+const { getAll, getById, getByParcelaId, getByUsuarioId, reservar, cancel, getTrozosDelUsuario } = require('../../models/trozo');
 
 router.get('/', async (req, res) => {
     try {
@@ -27,11 +27,23 @@ router.get('/parcela/:idParcela', async (req, res) => {
 
 
 
-router.get('/user/:idUsuario', async (req, res) => {
-    const usuarioId = req.params.idUsuario;
+router.get('/user/:idUsuario', [checkToken], async (req, res) => {
+
 
     try {
-        const rows = await getByUsuarioId(usuarioId);
+        const rows = await getByUsuarioId(req.user.id);
+        res.json(rows)
+    } catch (error) {
+        res.json({ error: error.message })
+    }
+})
+
+
+router.get('/trozosUsuario/:idParcela', [checkToken], async (req, res) => {
+    const idParcela = req.params.idParcela;
+
+    try {
+        const rows = await getTrozosDelUsuario(req.user.id, idParcela);
         res.json(rows)
     } catch (error) {
         res.json({ error: error.message })

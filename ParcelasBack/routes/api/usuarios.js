@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { getAll, getById, create, updateById, deleteById, getByEmail, getByUserName, getUserByParcela } = require('../../models/usuario');
+const { getTrozosDelUsuario, dataParcela } = require('../../models/trozo');
 const bcrypt = require('bcryptjs');
 const webTok = require('jsonwebtoken');
 const daysJs = require('dayjs');
@@ -24,6 +25,13 @@ router.get('/:id', async (req, res) => {
     const id = req.params.id;
     try {
         const rows = await getById(id);
+        const trozos = await getTrozosDelUsuario(id)
+        const alquiladas = [];
+        for (let trozo of trozos) {
+            const datos = await dataParcela(id, trozo.fk_parcela)
+            alquiladas.push(datos)
+        }
+        rows.trozos = alquiladas;
         res.json(rows)
     } catch (error) {
         res.json({ error: error.message });

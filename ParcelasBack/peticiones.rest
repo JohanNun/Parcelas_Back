@@ -43,7 +43,7 @@ GET http://localhost:3000/api/usuarios/perfil/SR4
 
 ###
 
-GET http://localhost:3000/api/usuarios/5
+GET http://localhost:3000/api/usuarios/8
 
 ###
 
@@ -261,4 +261,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjgsImNhZHVj
 
 ###
 DELETE http://localhost:3000/api/trozos/17
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjgsImNhZHVjaWRhZCI6MTYxMjEwNTY0NSwiaWF0IjoxNjA4NDc2ODQ1fQ.8nnLCPo839hpsr2vwVP9bhUG4NfRP48OF7M5uo69oIM
+
+
+### 
+
+GET http://localhost:3000/api/trozos/trozosUsuario/2
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjgsImNhZHVjaWRhZCI6MTYxMjEwNTY0NSwiaWF0IjoxNjA4NDc2ODQ1fQ.8nnLCPo839hpsr2vwVP9bhUG4NfRP48OF7M5uo69oIM
