@@ -55,6 +55,7 @@ const getTrozosDelUsuario = (pFkUsuario) => {
 
 
 const reservar = ({ tamano }, pFkParcela, pFkUsuario) => {
+    console.log(tamano, pFkParcela, pFkUsuario);
     return new Promise((resolve, reject) => {
         db.query('INSERT INTO trozos (tamano, fk_parcela, fk_usuario) VALUES (?, ?, ?)', [tamano, pFkParcela, pFkUsuario], (error, result) => {
             if (error) reject(error);
@@ -78,7 +79,7 @@ const cancel = (pId) => {
 
 const dataParcela = (pIdUsuario, pIdParcela) => {
     return new Promise((resolve, reject) => {
-        db.query('SELECT t.id, p.titulo, p.images, p.calle, SUM(tamano) as suma from trozos t, parcela p WHERE t.fk_parcela = ? AND t.fk_usuario = ? AND t.fk_parcela = p.id', [pIdParcela, pIdUsuario], (error, rows) => {
+        db.query('SELECT t.id, p.titulo, p.images, p.calle, SUM(tamano) as suma from trozos t, parcela p WHERE t.fk_parcela = ? AND t.fk_parcela = p.id', [pIdParcela], (error, rows) => {
             if (error) reject(error);
             if (rows.length === 0) resolve(null)
             resolve(rows[0]);
