@@ -23,9 +23,10 @@ const getById = (pIdParcela) => {
 
 /* crear una parcela */
 
-const create = ({ titulo, tamano_total, tamano_disponible, precio_metro, calle, CP, ciudad, descripcion, images, fk_usuario }) => {
+const create = ({ titulo, tamano_total, tamano_disponible, precio_metro, calle, CP, ciudad, descripcion, images, fk_usuario, longitude, latitude }) => {
     return new Promise((resolve, reject) => {
-        db.query('INSERT INTO huerto.parcela (titulo, tamano_total, tamano_disponible, precio_metro, calle, CP, ciudad, descripcion, images, fk_usuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [titulo, tamano_total, tamano_disponible, precio_metro, calle, CP, ciudad, descripcion, images, fk_usuario], (error, result) => {
+        db.query('INSERT INTO huerto.parcela (titulo, tamano_total, tamano_disponible, precio_metro, calle, CP, ciudad, descripcion, images, fk_usuario, longitude, latitude) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [titulo, tamano_total, tamano_disponible, precio_metro, calle, CP, ciudad, descripcion, images, fk_usuario, longitude, latitude], (error, result) => {
+            console.log(error);
             if (error) reject(error);
             resolve(result);
         })

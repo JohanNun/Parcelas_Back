@@ -1,5 +1,15 @@
 const router = require('express').Router();
 const { getAllParcelas, getById, create, update, deleteById, selectByPrecioUp, selectByPrecioDown, selectByTamano, getByCiudad, getParcelaByUsuarioId, getParcelaByUserName } = require('../../models/parcela')
+const NodeGeocoder = require('node-geocoder');
+
+const options = {
+    provider: 'google',
+
+    // Optional depending on the providers
+
+    apiKey: 'AIzaSyBXoe3vvdGGosbpLVZqUncQDgiW4UAbl58', // for Mapquest, OpenCage, Google Premier
+    formatter: null // 'gpx', 'string', ...
+};
 
 
 //Metodo getAll() - GET
@@ -103,8 +113,14 @@ router.get('/user/parcela/:userName', async (req, res) => {
 //Metodo create() - POST
 
 router.post('/', async (req, res) => {
-    console.log(req.body);
     try {
+        const geocoder = NodeGeocoder(options);
+        const position = await geocoder.geocode(req.body.calle);
+
+        req.body.latitude = position[0].latitude;
+        req.body.longitude = position[0].longitude;
+        console.log(req.body);
+
         const result = await create(req.body);
         if (result.affectedRows === 1) {
             const nuevaParcela = await getById(result.insertId)
